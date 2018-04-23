@@ -13,9 +13,16 @@
     <description>Acceptance test driven development project</description>
 
     <properties>
+        <maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <maven.compile.encoding>UTF-8</maven.compile.encoding>
+
 
         <cucumber.version>1.2.5</cucumber.version>
         <junit.version>4.12</junit.version>
+        <!--<masterthought.version>3.16.0</masterthought.version>-->
         <masterthought.version>3.9.0</masterthought.version>
         <info.version>1.2.5</info.version>
         <apache.lang.version>3.7</apache.lang.version>
@@ -132,22 +139,32 @@
                 </configuration>
             </plugin>
 
-            <!--<plugin>-->
-            <!--<groupId>org.apache.maven.plugins</groupId>-->
-            <!--<artifactId>maven-surefire-plugin</artifactId>-->
-            <!--<version>2.21.0</version>-->
-            <!--<dependencies>-->
-            <!--<dependency>-->
-            <!--<groupId>org.apache.maven.surefire</groupId>-->
-            <!--<artifactId>surefire-junit47</artifactId>-->
-            <!--</dependency>-->
-            <!--</dependencies>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
                 <version>${masterthought.version}</version>
+                <!--<executions>-->
+                <!--<execution>-->
+                <!--<id>execution</id>-->
+                <!--<phase>verify</phase>-->
+                <!--<goals>-->
+                <!--<goal>generate</goal>-->
+                <!--</goals>-->
+                <!--<configuration>-->
+                <!--<projectName>java-selenium-practice-atdd</projectName>-->
+                <!--<outputDirectory>${project.build.directory}</outputDirectory>-->
+                <!--<parallelTesting>false</parallelTesting>-->
+                <!--</configuration>-->
+                <!--</execution>-->
+                <!--</executions>-->
                 <executions>
                     <execution>
                         <id>execution</id>
@@ -156,8 +173,12 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <projectName>java-selenium-practice-atdd</projectName>
+                            <projectName>cucumber-jvm-example</projectName>
                             <outputDirectory>${project.build.directory}</outputDirectory>
+                            <!--<jsonFiles>-->
+                                <!--&lt;!&ndash; supports wildcard or name pattern &ndash;&gt;-->
+                                <!--<param>**/*.json</param>-->
+                            <!--</jsonFiles>-->
                             <parallelTesting>false</parallelTesting>
                         </configuration>
                     </execution>
@@ -169,78 +190,78 @@
             <!--&lt;!&ndash;https://github.com/jmeter-maven-plugin/jmeter-maven-plugin/wiki/Selecting-Tests-To-Run&ndash;&gt;-->
             <!--<plugin>-->
 
-                <!--<groupId>com.lazerycode.jmeter</groupId>-->
-                <!--<artifactId>jmeter-maven-plugin</artifactId>-->
-                <!--<version>2.5.1</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>jmeter-tests</id>-->
-                        <!--<phase>verify</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>jmeter</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<testFilesIncluded>-->
-                                <!--<jMeterTestFile>${jmeter.test.Files.Included}</jMeterTestFile>-->
-                            <!--</testFilesIncluded>-->
-                            <!--<testFilesExcluded>-->
-                                <!--<excludeJMeterTestFile>${jmeter.test.Files.Excluded}</excludeJMeterTestFile>-->
-                            <!--</testFilesExcluded>-->
-                            <!--<jMeterProcessJVMSettings>-->
-                                <!--<xms>4096</xms>-->
-                                <!--<xmx>4096</xmx>-->
-                                <!--<arguments>-->
-                                    <!--<argument>-Xprof</argument>-->
-                                    <!--<argument>-Xfuture</argument>-->
-                                <!--</arguments>-->
-                            <!--</jMeterProcessJVMSettings>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<propertiesUser>-->
-                        <!--<jmx.api.hostname>${jmeter.jmx.api.hostname}</jmx.api.hostname>-->
-                        <!--<jmeter.save.saveservice.output_format>csv</jmeter.save.saveservice.output_format>-->
-                        <!--<jmeter.save.saveservice.print_field_names>true</jmeter.save.saveservice.print_field_names>-->
-                        <!--<jmeter.save.saveservice.successful>true</jmeter.save.saveservice.successful>-->
-                        <!--<jmeter.save.saveservice.label>true</jmeter.save.saveservice.label>-->
-                        <!--<jmeter.save.saveservice.time>true</jmeter.save.saveservice.time>-->
-                    <!--</propertiesUser>-->
-                    <!--<propertiesJMeter>-->
-                        <!--<jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>-->
-                    <!--</propertiesJMeter>-->
-                    <!--<testResultsTimestamp>false</testResultsTimestamp>-->
-                <!--</configuration>-->
+            <!--<groupId>com.lazerycode.jmeter</groupId>-->
+            <!--<artifactId>jmeter-maven-plugin</artifactId>-->
+            <!--<version>2.5.1</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>jmeter-tests</id>-->
+            <!--<phase>verify</phase>-->
+            <!--<goals>-->
+            <!--<goal>jmeter</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+            <!--<testFilesIncluded>-->
+            <!--<jMeterTestFile>${jmeter.test.Files.Included}</jMeterTestFile>-->
+            <!--</testFilesIncluded>-->
+            <!--<testFilesExcluded>-->
+            <!--<excludeJMeterTestFile>${jmeter.test.Files.Excluded}</excludeJMeterTestFile>-->
+            <!--</testFilesExcluded>-->
+            <!--<jMeterProcessJVMSettings>-->
+            <!--<xms>4096</xms>-->
+            <!--<xmx>4096</xmx>-->
+            <!--<arguments>-->
+            <!--<argument>-Xprof</argument>-->
+            <!--<argument>-Xfuture</argument>-->
+            <!--</arguments>-->
+            <!--</jMeterProcessJVMSettings>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--<configuration>-->
+            <!--<propertiesUser>-->
+            <!--<jmx.api.hostname>${jmeter.jmx.api.hostname}</jmx.api.hostname>-->
+            <!--<jmeter.save.saveservice.output_format>csv</jmeter.save.saveservice.output_format>-->
+            <!--<jmeter.save.saveservice.print_field_names>true</jmeter.save.saveservice.print_field_names>-->
+            <!--<jmeter.save.saveservice.successful>true</jmeter.save.saveservice.successful>-->
+            <!--<jmeter.save.saveservice.label>true</jmeter.save.saveservice.label>-->
+            <!--<jmeter.save.saveservice.time>true</jmeter.save.saveservice.time>-->
+            <!--</propertiesUser>-->
+            <!--<propertiesJMeter>-->
+            <!--<jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>-->
+            <!--</propertiesJMeter>-->
+            <!--<testResultsTimestamp>false</testResultsTimestamp>-->
+            <!--</configuration>-->
             <!--</plugin>-->
 
             <!--<plugin>-->
-                <!--<artifactId>maven-antrun-plugin</artifactId>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>verify</phase>-->
-                        <!--<configuration>-->
-                            <!--<tasks>-->
-                                <!--<mkdir dir="${basedir}/target/jmeter/dashboard"/>-->
-                                <!--<copy-->
-                                        <!--file="${basedir}/src/test/jmeter/lib/binNew/reportgenerator.properties"-->
-                                        <!--tofile="${basedir}/target/jmeter/bin/reportgenerator.properties"/>-->
-                                <!--<copy todir="${basedir}/target/jmeter/bin/report-template">-->
-                                    <!--<fileset dir="${basedir}/src/test/jmeter/lib/binNew/report-template"/>-->
-                                <!--</copy>-->
-                                <!--<java jar="${basedir}/target/jmeter/bin/ApacheJMeter-3.3.jar"-->
-                                      <!--fork="true">-->
-                                    <!--<arg value="-g"/>-->
-                                    <!--<arg value="${basedir}/target/jmeter/results/${perf.jtl.full.filename.dashboard}"/>-->
-                                    <!--<arg value="-o"/>-->
-                                    <!--<arg value="${basedir}/target/jmeter/dashboard"/>-->
-                                <!--</java>-->
-                            <!--</tasks>-->
-                        <!--</configuration>-->
-                        <!--<goals>-->
-                            <!--<goal>run</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
+            <!--<artifactId>maven-antrun-plugin</artifactId>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<phase>verify</phase>-->
+            <!--<configuration>-->
+            <!--<tasks>-->
+            <!--<mkdir dir="${basedir}/target/jmeter/dashboard"/>-->
+            <!--<copy-->
+            <!--file="${basedir}/src/test/jmeter/lib/binNew/reportgenerator.properties"-->
+            <!--tofile="${basedir}/target/jmeter/bin/reportgenerator.properties"/>-->
+            <!--<copy todir="${basedir}/target/jmeter/bin/report-template">-->
+            <!--<fileset dir="${basedir}/src/test/jmeter/lib/binNew/report-template"/>-->
+            <!--</copy>-->
+            <!--<java jar="${basedir}/target/jmeter/bin/ApacheJMeter-3.3.jar"-->
+            <!--fork="true">-->
+            <!--<arg value="-g"/>-->
+            <!--<arg value="${basedir}/target/jmeter/results/${perf.jtl.full.filename.dashboard}"/>-->
+            <!--<arg value="-o"/>-->
+            <!--<arg value="${basedir}/target/jmeter/dashboard"/>-->
+            <!--</java>-->
+            <!--</tasks>-->
+            <!--</configuration>-->
+            <!--<goals>-->
+            <!--<goal>run</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
             <!--</plugin>-->
 
         </plugins>
