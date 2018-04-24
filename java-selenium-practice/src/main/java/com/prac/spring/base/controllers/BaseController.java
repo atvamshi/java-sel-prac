@@ -18,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class BaseController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/temp", method = RequestMethod.GET)
     public String returnBaseHome() {
-        return "index.html";
+        return "temp.html";
     }
-
 
 }
